@@ -102,9 +102,9 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <div className="hidden lg:flex fixed flex-column top-[35%] left-0">
+      <div className="hidden lg:flex fixed flex-column top-[35%] left-0  ">
         <ul>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600">
+          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600 border border-white">
             <a
               className="flex justify-between items-center w-full text-gray-300"
               href="https://www.linkedin.com/in/nicolas-vicente-664116209/"
@@ -112,7 +112,7 @@ const Navbar = () => {
               LinkedIn <FaLinkedin size={30} />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333]">
+          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333] border border-white">
             <a
               className="flex justify-between items-center w-full text-gray-300"
               href="https://github.com/NicolasVicente44"
@@ -120,7 +120,7 @@ const Navbar = () => {
               Github <FaGithub size={30} />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]">
+          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0] border border-white">
             <a
               className="flex justify-between items-center w-full text-gray-300"
               href={`mailto:${email}`}
@@ -128,10 +128,10 @@ const Navbar = () => {
               Email <HiOutlineMail size={30} />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69]">
+          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69] border border-white">
             <a
               className="flex justify-between items-center w-full text-gray-300"
-              href="https://1drv.ms/b/s!AnTNbCdA-qIbjogyWQxNLtzr-VhaRQ?e=0hZRaY"
+              href="https://1drv.ms/b/s!AnTNbCdA-qIbjogyWQxNLtzr-VhaRQ?e=hIYNHS"
               download="Nicolas_Vicente_Resume.pdf"
             >
               Resume <BsFillPersonLinesFill size={30} />

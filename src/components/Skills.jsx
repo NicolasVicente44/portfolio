@@ -28,7 +28,7 @@ const Skills = () => {
             <img className="w-20 mx-auto" src={HTML} alt="HTML Icon" />
             <p className="my-4">HTML</p>
           </div>
-          <div className="-md shadow-hover:scale-110 duration-500">
+          <div className="shadow-[#000000] hover:scale-110 duration-500">
             <img className="w-20 mx-auto" src={CSS} alt="HTML Icon" />
             <p className="my-4">CSS</p>
           </div>
