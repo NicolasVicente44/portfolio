@@ -22,7 +22,7 @@ const About = () => {
               advancements. I embrace new tools, frameworks, and methodologies
               to deliver transformative solutions that drive operational
               efficiency and business success. I actively seek opportunities to
-              expand my skill set in emerging technologies. With a longing for
+              expand my skill set in emerging technologies and solutions. With a longing for
               knowledge and a dedication to personal and professional growth, I
               stay at the forefront of industry trends.
             </p>
