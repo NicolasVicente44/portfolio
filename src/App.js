@@ -7,13 +7,21 @@ import Skills from "./components/Skills";
 import Work from "./components/Work";
 
 function App() {
-  const [theme, setTheme] = useState("dark"); // Default theme
+  // system theme preference at the start
+  const systemTheme =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+
+  const [theme, setTheme] = useState(systemTheme); // Set default theme based on system preference
   const [nav, setNav] = useState(false); // Define the nav state
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
+    // saved theme from localStorage or fallback to system theme
+    const savedTheme = localStorage.getItem("theme") || systemTheme;
     setTheme(savedTheme);
-  }, []);
+  }, [systemTheme]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
@@ -26,7 +34,7 @@ function App() {
       <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
       <Hero theme={theme} />
       <About theme={theme} />
-      <Skills nav={nav} theme={theme} /> {/* Pass nav to Skills */}
+      <Skills nav={nav} theme={theme} />
       <Work nav={nav} theme={theme} />
       <Contact theme={theme} />
     </div>
