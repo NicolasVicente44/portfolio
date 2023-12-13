@@ -22,7 +22,7 @@ const Navbar = ({ toggleTheme, theme }) => {
         </li>
         <li className="text-2xl">
           <li className="text-2xl">
-            <a href="/about">About</a>
+            <a href="/#/about">About</a>
           </li>
         </li>
         <li className="text-2xl">
