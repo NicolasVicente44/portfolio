@@ -15,12 +15,12 @@ import Python from "../assets/python.png";
 import Java from "../assets/java.png";
 
 const Skills = ({ theme, nav }) => {
-  const skillsClass = nav ? "hide-skills" : "";
+  console.log(nav);
 
   return (
     <div
       name="skills"
-      className={`w-full pt-40 md:pt-0 h-screen ${skillsClass} ${
+      className={`w-full pt-60 h-full  ${
         theme === "dark" ? "bg-[#000000] text-gray-300" : "bg-white text-black"
       }`}
     >
@@ -35,11 +35,12 @@ const Skills = ({ theme, nav }) => {
           >
             Skills
           </p>
-          <p className="py-4 text-lg">
+          <p className="py-4 text-lg ">
             These are some of the programming technologies I work with. I've
-            also utilized azure and postman, as well as cloud document databases
-            like mongoDB and firebase. Outside of my programming skills, I have
-            a background in IT support, sales, and financial services.
+            also utilized azure and postman, as well as cloud databases such as
+            mongoDB and firebase. Outside of my programming skills, I have a
+            background in IT support, sales, and financial services with
+            experience in the Canadian banking and automotive sector.
           </p>
         </div>
 

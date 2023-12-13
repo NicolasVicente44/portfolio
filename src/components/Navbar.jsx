@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
-import { Link } from "react-scroll";
+// import { Link } from "react-scroll";
 import { FaRegLightbulb } from "react-icons/fa";
 import { IoMoonOutline } from "react-icons/io5";
 
@@ -18,54 +18,27 @@ const Navbar = ({ toggleTheme, theme }) => {
           {theme === "dark" ? <FaRegLightbulb /> : <IoMoonOutline />}
         </button>
         <li className="text-2xl">
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            className="hover:text-gray-500"
-          >
-            Home
-          </Link>
+          <a href="/">Home</a>
         </li>
         <li className="text-2xl">
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="hover:text-gray-500"
-          >
-            About
-          </Link>
+          <li className="text-2xl">
+            <a href="/about">About</a>
+          </li>
         </li>
         <li className="text-2xl">
-          <Link
-            to="skills"
-            smooth={true}
-            duration={500}
-            className="hover:text-gray-500"
-          >
-            Skills
-          </Link>
+          <li className="text-2xl">
+            <a href="/skills">Skills</a>
+          </li>
         </li>
         <li className="text-2xl">
-          <Link
-            to="work"
-            smooth={true}
-            duration={500}
-            className="hover:text-gray-500"
-          >
-            Work
-          </Link>
+          <li className="text-2xl">
+            <a href="/work">Work</a>
+          </li>
         </li>
         <li className="text-2xl">
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
-            className="hover:text-gray-500"
-          >
-            Contact
-          </Link>
+          <li className="text-2xl">
+            <a href="/contact">Contact</a>
+          </li>
         </li>
       </ul>
 
@@ -81,29 +54,29 @@ const Navbar = ({ toggleTheme, theme }) => {
         }
       >
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="home" smooth={true} duration={500}>
-            Home
-          </Link>
+          <li className="text-2xl">
+            <a href="/">Home</a>
+          </li>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="about" smooth={true} duration={500}>
-            About
-          </Link>
+          <li className="text-2xl">
+            <a href="/about">About</a>
+          </li>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="skills" smooth={true} duration={500}>
-            Skills
-          </Link>
+          <li className="text-2xl">
+            <a href="/skills">Skills</a>
+          </li>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="work" smooth={true} duration={500}>
-            Work
-          </Link>
+          <li className="text-2xl">
+            <a href="/work">Work</a>
+          </li>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={handleClick} to="contact" smooth={true} duration={500}>
-            Contact
-          </Link>
+          <li className="text-2xl">
+            <a href="/contact">Contact</a>
+          </li>
         </li>
         <button onClick={toggleTheme} className="py-6 text-4xl">
           {theme === "dark" ? <FaRegLightbulb /> : <IoMoonOutline />}

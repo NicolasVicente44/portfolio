@@ -36,10 +36,8 @@ const Hero = ({ theme }) => {
           thrive in dynamic and growth-oriented environments.
         </p>
         <div className="flex items-center">
-          <Link
-            to="work"
-            smooth={true}
-            duration={500}
+          <a
+            href="/work"
             className={`group border-2 px-6 py-3 my-2 flex items-center cursor-pointer transition duration-300 ${
               theme === "dark"
                 ? "text-white hover:bg-white hover:text-black border-white"
@@ -47,8 +45,10 @@ const Hero = ({ theme }) => {
             }`}
           >
             View Work
-            <HiArrowNarrowRight className="ml-3" />
-          </Link>
+            <span className="group-hover:translate-x-3 duration-300">
+              <HiArrowNarrowRight className="ml-3 " />
+            </span>
+          </a>
         </div>
       </div>
     </div>

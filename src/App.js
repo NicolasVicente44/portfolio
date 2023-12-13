@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   // system theme preference at the start
@@ -32,11 +33,13 @@ function App() {
   return (
     <div className={theme === "dark" ? "dark" : ""}>
       <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
-      <Hero theme={theme} />
-      <About theme={theme} />
-      <Skills nav={nav} theme={theme} />
-      <Work nav={nav} theme={theme} />
-      <Contact theme={theme} />
+      <Routes>
+        <Route path="/" element={<Hero nav={nav} theme={theme} />} />
+        <Route path="/about" element={<About nav={nav} theme={theme} />} />
+        <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
+        <Route path="/work" element={<Work nav={nav} theme={theme} />} />
+        <Route path="/contact" element={<Contact theme={theme} />} />
+      </Routes>
     </div>
   );
 }

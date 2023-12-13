@@ -4,59 +4,85 @@ import bankingapp from "../assets/bankingapp.png";
 import financewebsite from "../assets/financewebsite.png";
 import carwebsite from "../assets/carwebsite.png";
 import cryptosite from "../assets/cryptowebsite.png";
+import blog from "../assets/projects/blogging.png";
 import website from "../assets/website.png";
 import tableau from "../assets/tableau.png";
+import market from "../assets/projects/market.png";
+import powerbi from "../assets/projects/analyitics.png";
 
-const Work = ({ theme }) => {
-  const [nav, setNav] = useState(false);
+const Work = ({ theme, nav }) => {
   if (nav) {
     return null;
   }
+  console.log(nav);
 
-  // Define project data
+  // project data
   const projects = [
+    {
+      title: "MERN Stack Blog",
+      image: blog,
+      link: "https://github.com/NicolasVicente44/mern-blog",
+      desc: "MERN full stack blog website",
+    },
     {
       title: "Java Banking App",
       image: bankingapp,
       link: "https://github.com/NicolasVicente44/JavaFXBankingApplication2023",
+      desc: "Client and admin banking app",
     },
     {
       title: "ASP.NET Finance Site",
       image: financewebsite,
       link: "https://github.com/NicolasVicente44/Churn",
+      desc: "Full stack MVC finance web app",
+    },
+    {
+      title: "Python Market Web App",
+      image: market,
+      link: "https://github.com/NicolasVicente44/Churn",
+      desc: "Full stack python Django marketplace",
+    },
+    {
+      title: "Power BI Dashboard",
+      image: powerbi,
+      link: "https://github.com/NicolasVicente44/Sample-PowerBI-Report",
+      desc: "Sample Power BI analytics dashboard",
     },
     {
       title: "PHP MVC Site",
       image: carwebsite,
       link: "https://github.com/NicolasVicente44/PHP-Cars-Website",
+      desc: "Full stack MVC PHP web app for car dealership",
     },
     {
       title: "Crypto Site W API",
       image: cryptosite,
       link: "https://github.com/NicolasVicente44/crypto-tracking-react",
+      desc: "Crypto web app with firebase DB",
     },
     {
       title: "Static Site",
       image: website,
       link: "https://github.com/NicolasVicente44/tailwind",
+      desc: "Static frontend site",
     },
     {
       title: "Tableau Dashboard",
       image: tableau,
       link: "https://github.com/NicolasVicente44/EcommerceDataTableau",
+      desc: "Tableau analytics dashboard",
     },
-    // Add more projects here
   ];
 
   return (
     <div
       name="work"
-      className={`w-full md:h-screen pt-[400px] md:pt-5  ${
-        theme === "dark" ? "bg-black text-gray-300" : "bg-white text-black"
+      className={`w-full pt-40 h-full ${
+        theme === "dark" ? "bg-[#000000] text-gray-300" : "bg-white text-black"
       }`}
     >
-      <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full pt-20">
-        <div className="pb-8">
+      <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center h-full">
+        <div>
           <p
             className={`text-4xl font-bold inline ${
               theme === "dark"
@@ -74,43 +100,47 @@ const Work = ({ theme }) => {
           </p>
         </div>
 
-        {/* Project containers */}
-        <div
-          className={
-            nav ? "hidden" : "grid sm:grid-cols-2 md:grid-cols-3 gap-4"
-          }
-        >
-          {projects.map((project, index) => (
-            <div className="relative" key={index}>
+        <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">
+          {/* Project containers */}
+          <div
+            className={
+              nav
+                ? "hidden"
+                : "grid sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center "
+            }
+          >
+            {projects.map((project, index) => (
               <div
-                style={{
-                  backgroundImage: `url(${project.image})`,
-                  backgroundSize: "60%",
-                }}
-                className={`shadow-lg group container rounded-md flex justify-center items-center mx-auto contentDiv ${
-                  theme === "dark" ? "shadow-[#040c16]" : "shadow-[#d1d5db]"
-                }`}
+                className="max-w-sm rounded overflow-hidden shadow-lg text-center"
+                key={index}
               >
-                {/* hover effect */}
-                <div
-                  className={`opacity-0 hover:opacity-100 ${
-                    theme === "dark" ? "hover:bg-[#1a1a1a]" : "hover:bg-white"
-                  } rounded-md absolute inset-0 flex flex-col justify-center items-center`}
-                >
-                  <span className="text-2xl font-bold tracking-wider">
-                    {project.title}
-                  </span>
-                  <div className="pt-8 text-center">
-                    <a href={project.link}>
-                      <button className="text-center rounded-lg px-4 py-3 m-2 bg-black text-white font-bold hover:text-gray-400 text-lg">
-                        Project Link
-                      </button>
-                    </a>
-                  </div>
+                <img
+                  className="w-full"
+                  src={project.image}
+                  alt={project.title}
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">{project.title}</div>
+                  {/* Example description - replace with actual content if available */}
+                  <p
+                    className={`${
+                      nav ? "text-gray-300" : "text-gray-700"
+                    } text-base`}
+                  >
+                    {project.desc}
+                  </p>
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  <a
+                    href={project.link}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 hover:opacity-60"
+                  >
+                    Project Link
+                  </a>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
