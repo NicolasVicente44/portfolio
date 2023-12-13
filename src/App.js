@@ -32,7 +32,6 @@ function App() {
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
-      <Router>
         <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
         <Routes>
           <Route path="/" element={<Hero nav={nav} theme={theme} />} />
@@ -41,7 +40,6 @@ function App() {
           <Route path="/work" element={<Work nav={nav} theme={theme} />} />
           <Route path="/contact" element={<Contact theme={theme} />} />
         </Routes>
-      </Router>
     </div>
   );
 }
