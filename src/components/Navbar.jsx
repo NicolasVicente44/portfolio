@@ -112,7 +112,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69] ">
             <a
               className="flex justify-between items-center w-full text-gray-300"
-              href="https://onedrive.live.com/?cid=1BA2FA40276CCD74&id=1BA2FA40276CCD74%21230450&parId=1BA2FA40276CCD74%2142888&o=OneUp"
+              href="https://www.dropbox.com/scl/fi/hf4j9gsj1ed38prl3b5xo/Nicolas_Vicente_Resume.pdf?rlkey=sgk2sogjscw5ttqofnc9mb6mt&dl=0"
               download="Nicolas_Vicente_Resume.pdf"
             >
               Resume <BsFillPersonLinesFill size={30} />
