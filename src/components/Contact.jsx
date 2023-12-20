@@ -4,7 +4,7 @@ const Contact = ({ theme, toggleTheme }) => {
   return (
     <div
       name="contact"
-      className={`w-full h-screen pt-20 ${
+      className={`w-full h-screen  pt-56 ${
         theme === "dark" ? "bg-black text-white" : "bg-white text-black"
       } flex justify-center items-center p-4`}
     >

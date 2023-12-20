@@ -6,9 +6,12 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaRegLightbulb } from "react-icons/fa";
 import { IoMoonOutline } from "react-icons/io5";
 
-const Navbar = ({ toggleTheme, theme }) => {
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+const Navbar = ({ toggleTheme, theme, setNav }) => {
+  const [nav, setNavState] = useState(false);
+  const handleClick = () => {
+    setNav(!nav);
+    setNavState(!nav); // Set the local state as well
+  };
   const email = "nicolas.a.vicente44@gmail.com";
 
   return (

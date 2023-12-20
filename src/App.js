@@ -15,7 +15,8 @@ function App() {
       ? "dark"
       : "light";
 
-  const [theme, setTheme] = useState(systemTheme); // Set default theme based on system preference
+  // Initialize the theme state with a temporary value
+  const [theme, setTheme] = useState("light");
   const [nav, setNav] = useState(false); // Define the nav state
 
   useEffect(() => {
@@ -29,12 +30,19 @@ function App() {
     if (!localStorage.getItem("theme")) {
       setTheme("light");
     }
-  }, []); // Run this effect only on mount
+  }, []);
+
+  // After the useEffect has run, update the theme to the correct value
+  useEffect(() => {
+    setTheme((prevTheme) => {
+      localStorage.setItem("theme", prevTheme);
+      return prevTheme;
+    });
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
   };
 
   return (
