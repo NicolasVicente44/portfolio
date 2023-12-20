@@ -5,7 +5,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
-import { Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   // system theme preference at the start
@@ -15,7 +15,8 @@ function App() {
       ? "dark"
       : "light";
 
-  const [theme, setTheme] = useState(systemTheme); // Set default theme based on system preference
+  // Initialize the theme state with a temporary value
+  const [theme, setTheme] = useState("light");
   const [nav, setNav] = useState(false); // Define the nav state
 
   useEffect(() => {
@@ -24,22 +25,36 @@ function App() {
     setTheme(savedTheme);
   }, [systemTheme]);
 
+  useEffect(() => {
+    // If no theme preference is stored, set the default theme to light
+    if (!localStorage.getItem("theme")) {
+      setTheme("light");
+    }
+  }, []);
+
+  // After the useEffect has run, update the theme to the correct value
+  useEffect(() => {
+    setTheme((prevTheme) => {
+      localStorage.setItem("theme", prevTheme);
+      return prevTheme;
+    });
+  }, [theme]);
+
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
   };
 
   return (
     <div className={theme === "dark" ? "dark" : ""}>
-        <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
-        <Routes>
-          <Route path="/" element={<Hero nav={nav} theme={theme} />} />
-          <Route path="/about" element={<About nav={nav} theme={theme} />} />
-          <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
-          <Route path="/work" element={<Work nav={nav} theme={theme} />} />
-          <Route path="/contact" element={<Contact theme={theme} />} />
-        </Routes>
+      <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
+      <Routes>
+        <Route path="/" element={<Hero nav={nav} theme={theme} />} />
+        <Route path="/about" element={<About nav={nav} theme={theme} />} />
+        <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
+        <Route path="/work" element={<Work nav={nav} theme={theme} />} />
+        <Route path="/contact" element={<Contact theme={theme} />} />
+      </Routes>
     </div>
   );
 }

@@ -11,12 +11,11 @@ import market from "../assets/projects/market.png";
 import powerbi from "../assets/projects/analyitics.png";
 
 const Work = ({ theme, nav }) => {
-  if (nav) {
-    return null;
-  }
-  console.log(nav);
-
   // project data
+  if (nav) {
+    return null; // or return an empty component
+  }
+
   const projects = [
     {
       title: "MERN Stack Blog",
@@ -73,7 +72,6 @@ const Work = ({ theme, nav }) => {
       desc: "Tableau analytics dashboard",
     },
   ];
-
   return (
     <div
       name="work"
@@ -93,7 +91,7 @@ const Work = ({ theme, nav }) => {
             Work
           </p>
           <p className="py-6 text-lg">
-            These are some of my recent projects - more can be found on my{" "}
+            These are some of my recent projects - more can be found on my
             <strong>
               <a href="https://github.com/NicolasVicente44">github</a>
             </strong>
@@ -106,25 +104,29 @@ const Work = ({ theme, nav }) => {
             className={
               nav
                 ? "hidden"
-                : "grid sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center "
+                : "grid sm:grid-cols-2 md:w-full w-3/4 mx-auto md:grid-cols-3 gap-4 justify-center "
             }
           >
             {projects.map((project, index) => (
               <div
-                className="max-w-sm rounded overflow-hidden shadow-lg text-center"
+                className={`${
+                  nav
+                    ? "hidden"
+                    : "max-w-sm rounded overflow-hidden shadow-lg text-center"
+                } ${theme === "dark" ? "drop-shadow-2xl	" : "drop-shadow-2xl"}`}
                 key={index}
               >
                 <img
-                  className="w-full"
+                  className="w-3/4 mx-auto"
                   src={project.image}
                   alt={project.title}
                 />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{project.title}</div>
-                  {/* Example description - replace with actual content if available */}
                   <p
                     className={`${
-                      nav ? "text-gray-300" : "text-gray-700"
+                      (console.log(nav),
+                      nav ? "text-gray-300" : "text-gray-700")
                     } text-base`}
                   >
                     {project.desc}
