@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import QrCode from "./components/QrCode";
 
 function App() {
   // system theme preference at the start
@@ -54,6 +55,7 @@ function App() {
         <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
         <Route path="/work" element={<Work nav={nav} theme={theme} />} />
         <Route path="/contact" element={<Contact theme={theme} />} />
+        <Route path="/qrcode" element={<QrCode theme={theme} />} />
       </Routes>
     </div>
   );
