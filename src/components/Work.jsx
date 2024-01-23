@@ -38,7 +38,7 @@ const Work = ({ theme, nav }) => {
     {
       title: "Python Market Web App",
       image: market,
-      link: "https://github.com/NicolasVicente44/Churn",
+      link: "https://github.com/NicolasVicente44/django_marketplace/tree/main",
       desc: "Full stack python Django marketplace",
     },
     {
