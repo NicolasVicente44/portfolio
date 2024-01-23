@@ -91,9 +91,12 @@ const Work = ({ theme, nav }) => {
             Work
           </p>
           <p className="py-6 text-lg">
-            These are some of my recent projects - more can be found on my
+            These are some of my recent projects - more can be found on my{" "}
             <strong>
-              <a href="https://github.com/NicolasVicente44">github</a>
+              <a href="https://github.com/NicolasVicente44">
+                {" "}
+                <u>GitHub</u>
+              </a>
             </strong>
           </p>
         </div>
@@ -113,7 +116,11 @@ const Work = ({ theme, nav }) => {
                   nav
                     ? "hidden"
                     : "max-w-sm rounded overflow-hidden shadow-lg text-center"
-                } ${theme === "dark" ? "drop-shadow-2xl	" : "drop-shadow-2xl"}`}
+                } ${
+                  theme === "dark"
+                    ? "shadow-lg shadow-neutral-900"
+                    : "shadow-xl"
+                }`}
                 key={index}
               >
                 <img

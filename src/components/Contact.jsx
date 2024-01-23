@@ -28,28 +28,36 @@ const Contact = ({ theme, toggleTheme }) => {
               theme === "dark" ? " border-white text-gray-300" : " text-black "
             } `}
           >
-            Submit the form below or reach me by email -
-            nicolas.a.vicente44@gmail.com
+            Submit the form below or reach me by:
           </p>
+
+          <li>Email | nicolas.a.vicente44@gmail.com</li>
+          <li>Phone | 705 - 241 - 8697 </li>
+          <li>
+            <a href="https://www.linkedin.com/in/nicolas-vicente-664116209/">
+              {" "}
+              <u>LinkedIn</u>
+            </a>
+          </li>
         </div>
 
         <input
           required
-          className="bg-[#ccd6f6] p-2"
+          className="bg-[#ccd6f6] p-2 text-black"
           type="text"
           placeholder="Name"
           name="name"
         />
         <input
           required
-          className="my-4 p-2 bg-[#ccd6f6]"
+          className="my-4 p-2 text-black bg-[#ccd6f6]"
           type="email"
           placeholder="Email"
           name="email"
         />
         <textarea
           required
-          className="bg-[#ccd6f6]  p-2"
+          className="bg-[#ccd6f6] text-black  p-2"
           name="message"
           id=""
           rows="10"

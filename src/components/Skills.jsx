@@ -37,10 +37,12 @@ const Skills = ({ theme, nav }) => {
           </p>
           <p className="py-4 text-lg ">
             These are some of the programming technologies I work with. I've
-            also utilized azure and postman, as well as cloud databases such as
-            mongoDB and firebase. Outside of my programming skills, I have a
-            background in IT support, sales, and financial services with
-            experience in the Canadian banking and automotive sector.
+            also utilized Postman and Jira, as well as cloud databases such as
+            MongoDB, Azure, and Firebase. Outside of my programming skills, I
+            have experience with Tableau PowerBI, and other powerful data
+            analysis tools and softwares. My professional background encompasses
+            IT support, sales, and financial services with experience in the
+            Canadian banking and automotive sector.
           </p>
         </div>
 

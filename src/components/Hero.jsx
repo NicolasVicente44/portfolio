@@ -23,7 +23,7 @@ const Hero = ({ theme }) => {
             theme === "dark" ? "text-[#8892b0]" : "text-gray-700"
           }`}
         >
-          I'm an aspiring IT professional
+          I'm an IT professional
         </h2>
         <p
           className={`${

@@ -115,7 +115,7 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69] ">
             <a
               className="flex justify-between items-center w-full text-gray-300"
-              href="https://www.dropbox.com/scl/fi/hf4j9gsj1ed38prl3b5xo/Nicolas_Vicente_Resume.pdf?rlkey=sgk2sogjscw5ttqofnc9mb6mt&dl=0"
+              href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&dl=0"
               download="Nicolas_Vicente_Resume.pdf"
             >
               Resume <BsFillPersonLinesFill size={30} />
