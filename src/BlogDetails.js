@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { db } from "./firebase"; // Import db from firebase.js
-import { useParams } from "react-router-dom"; // Import useParams to get URL parameters
-import { doc, getDoc } from "firebase/firestore"; // Import necessary Firestore functions
-import { format } from "date-fns"; // Import date-fns for date formatting
+import { db } from "./firebase";
+import { useParams, useNavigate } from "react-router-dom";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { format } from "date-fns";
 
 const BlogDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const docRef = doc(db, "posts", id); // Get reference to the document
-      const docSnap = await getDoc(docRef); // Fetch the document snapshot
+      const docRef = doc(db, "posts", id);
+      const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         setPost(docSnap.data());
@@ -23,6 +24,16 @@ const BlogDetails = () => {
     fetchPost();
   }, [id]);
 
+  const handleDelete = async () => {
+    const docRef = doc(db, "posts", id);
+    await deleteDoc(docRef);
+    navigate("/blog");
+  };
+
+  const handleEdit = () => {
+    navigate(`/blog/edit/${id}`);
+  };
+
   if (!post) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -33,7 +44,7 @@ const BlogDetails = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-3xl bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="w-full mt-24 mb-12 max-w-3xl bg-white shadow-md rounded-lg overflow-hidden">
         {post.imageUrl && (
           <img
             src={post.imageUrl}
@@ -49,6 +60,20 @@ const BlogDetails = () => {
             </p>
           )}
           <div className="prose max-w-none text-gray-700">{post.content}</div>
+          <div className="flex justify-end mt-4">
+            <button
+              onClick={handleEdit}
+              className="mr-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

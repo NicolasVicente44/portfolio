@@ -52,7 +52,7 @@ function App() {
   return (
     <div className={theme === "dark" ? "dark" : ""}>
       <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
-    <Routes>
+      <Routes>
         <Route path="/" element={<Hero nav={nav} theme={theme} />} />
         <Route path="/about" element={<About nav={nav} theme={theme} />} />
         <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
