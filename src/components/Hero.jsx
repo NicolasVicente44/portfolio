@@ -18,17 +18,11 @@ const Hero = ({ theme }) => {
         >
           Nicolas Vicente
         </h1>
-        <h2
-          className={`text-4xl sm:text-7xl font-bold ${
-            theme === "dark" ? "text-[#8892b0]" : "text-gray-700"
-          }`}
-        >
-          I'm an IT professional
-        </h2>
+
         <p
           className={`${
             theme === "dark" ? "text-white" : "text-black"
-          } py-4 max-w-[700px] text-lg`}
+          } py-4 max-w-[700px] text-base sm:text-lg`} // Adjusted text size
         >
           As a current computer science student, I aspire to build a successful
           career as a technical professional. With a focus on leveraging
@@ -38,15 +32,30 @@ const Hero = ({ theme }) => {
         <div className="flex items-center">
           <a
             href="/work"
-            className={`group border-2 px-6 py-3 my-2 flex items-center cursor-pointer transition duration-300 ${
+            className={`group border-2 px-4 sm:px-6 py-2 sm:py-3 my-2 flex items-center cursor-pointer transition duration-300 ${
               theme === "dark"
                 ? "text-white hover:bg-white hover:text-black border-white"
                 : "text-black hover:bg-black hover:text-white border-black"
             }`}
           >
             View Work
-            <span className="group-hover:translate-x-3 duration-300">
-              <HiArrowNarrowRight className="ml-3 " />
+            <span className="group-hover:translate-x-1 sm:translate-x-3 duration-300">
+              <HiArrowNarrowRight className="ml-2 sm:ml-3 " />
+            </span>
+          </a>
+
+          {/* New Button */}
+          <a
+            href="/new"
+            className={`group border-2 px-4 sm:px-6 py-2 sm:py-3 my-2 ml-4 flex items-center cursor-pointer transition duration-300 ${
+              theme === "dark"
+                ? "text-white hover:bg-white hover:text-black border-white"
+                : "text-black hover:bg-black hover:text-white border-black"
+            }`}
+          >
+            View Blog
+            <span className="group-hover:translate-x-1 sm:translate-x-3 duration-300">
+              <HiArrowNarrowRight className="ml-2 sm:ml-3 " />
             </span>
           </a>
         </div>

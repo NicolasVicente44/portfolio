@@ -7,6 +7,9 @@ import Skills from "./components/Skills";
 import Work from "./components/Work";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import QrCode from "./components/QrCode";
+import Blog from "./Blog";
+import BlogCreateEdit from "./BlogCreateEdit"; // Import BlogCreateEdit component
+import BlogDetails from "./BlogDetails"; // Import BlogDetails component
 
 function App() {
   // system theme preference at the start
@@ -49,12 +52,17 @@ function App() {
   return (
     <div className={theme === "dark" ? "dark" : ""}>
       <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
-      <Routes>
+    <Routes>
         <Route path="/" element={<Hero nav={nav} theme={theme} />} />
         <Route path="/about" element={<About nav={nav} theme={theme} />} />
         <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
         <Route path="/work" element={<Work nav={nav} theme={theme} />} />
         <Route path="/contact" element={<Contact theme={theme} />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/new" element={<BlogCreateEdit isNew />} />
+        <Route path="/blog/edit/:id" element={<BlogCreateEdit />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
+
         <Route path="/qrcode" element={<QrCode theme={theme} />} />
       </Routes>
     </div>

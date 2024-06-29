@@ -15,7 +15,6 @@ import Python from "../assets/python.png";
 import Java from "../assets/java.png";
 
 const Skills = ({ theme, nav }) => {
-  console.log(nav);
 
   return (
     <div

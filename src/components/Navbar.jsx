@@ -43,6 +43,11 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
             <a href="/contact">Contact</a>
           </li>
         </li>
+        <li className="text-2xl">
+          <li className="text-2xl">
+            <a href="/blog">Blog</a>
+          </li>
+        </li>
       </ul>
 
       <div onClick={handleClick} className="md:hidden z-10">
@@ -81,6 +86,11 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
             <a href="/contact">Contact</a>
           </li>
         </li>
+        <li className="py-6 text-4xl">
+          <li className="text-2xl">
+            <a href="/contact">Blog</a>
+          </li>
+        </li>
         <button onClick={toggleTheme} className="py-6 text-4xl">
           {theme === "dark" ? <FaRegLightbulb /> : <IoMoonOutline />}
         </button>
@@ -115,7 +125,7 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69] ">
             <a
               className="flex justify-between items-center w-full text-gray-300"
-              href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&dl=0"
+              href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&st=509n6s4z&dl=0"
               download="Nicolas_Vicente_Resume.pdf"
             >
               Resume <BsFillPersonLinesFill size={30} />
