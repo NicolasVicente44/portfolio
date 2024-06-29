@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "./firebase"; // Import db from firebase.js
 import { useParams } from "react-router-dom"; // Import useParams to get URL parameters
+import { doc, getDoc } from "firebase/firestore"; // Import necessary Firestore functions
+import { format } from "date-fns"; // Import date-fns for date formatting
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -8,34 +10,47 @@ const BlogDetails = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const docRef = await db.collection("posts").doc(id).get();
-      if (docRef.exists) {
-        setPost(docRef.data());
+      const docRef = doc(db, "posts", id); // Get reference to the document
+      const docSnap = await getDoc(docRef); // Fetch the document snapshot
+
+      if (docSnap.exists()) {
+        setPost(docSnap.data());
       } else {
         console.log("No such document!");
       }
     };
 
     fetchPost();
-
-    return () => {}; // Cleanup function
   }, [id]);
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading Post...
+      </div>
+    );
   }
 
   return (
-    <div className="w-full max-w-3xl p-4">
-      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-      <p className="text-gray-700">{post.content}</p>
-      {post.imageUrl && (
-        <img
-          src={post.imageUrl}
-          alt={post.title}
-          className="mt-2 rounded-md"
-        />
-      )}
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-3xl bg-white shadow-md rounded-lg overflow-hidden">
+        {post.imageUrl && (
+          <img
+            src={post.imageUrl}
+            alt={post.title}
+            className="w-full h-80 object-contain bg-gray-200"
+          />
+        )}
+        <div className="p-6">
+          <h1 className="text-4xl font-bold mb-4 text-center">{post.title}</h1>
+          {post.timestamp && (
+            <p className="text-gray-500 text-sm mb-4 text-center">
+              {format(new Date(post.timestamp.seconds * 1000), "PPpp")}
+            </p>
+          )}
+          <div className="prose max-w-none text-gray-700">{post.content}</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -46,7 +46,7 @@ const Hero = ({ theme }) => {
 
           {/* New Button */}
           <a
-            href="/new"
+            href="/blog"
             className={`group border-2 px-4 sm:px-6 py-2 sm:py-3 my-2 ml-4 flex items-center cursor-pointer transition duration-300 ${
               theme === "dark"
                 ? "text-white hover:bg-white hover:text-black border-white"

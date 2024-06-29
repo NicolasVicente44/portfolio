@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { db, auth } from "./firebase"; // Import db and auth from firebase.js
+import { db, auth } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { Link } from "react-router-dom"; // Import Link for navigation
-import Login from "./Login"; // Import your Login component
-import { format } from "date-fns"; // Import date-fns for date formatting
+import { Link } from "react-router-dom";
+import Login from "./Login";
+import { format } from "date-fns";
 
-const Blog = () => {
+const Blog = ({ theme }) => {
   const [posts, setPosts] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,45 +18,70 @@ const Blog = () => {
     };
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoggedIn(!!user); // Set login status based on user presence
+      setIsLoggedIn(!!user);
     });
 
     fetchPosts();
 
-    return () => unsubscribe(); // Cleanup function
+    return () => unsubscribe();
   }, []);
 
+  const getPreview = (content) => {
+    if (!content) return "";
+    const words = content.split(" ");
+    return words.length > 25 ? words.slice(0, 25).join(" ") + "..." : content;
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      {/* Conditional rendering based on user authentication */}
+    <div
+      className={`flex flex-col items-center justify-center min-h-screen ${
+        theme === "dark"
+          ? "bg-gray-900 text-gray-300"
+          : "bg-gray-100 text-black"
+      }`}
+    >
       {isLoggedIn ? (
-        <div className="w-full max-w-3xl p-4">
-          <h1 className="text-3xl font-bold mb-4">Blog</h1>
-          <Link
-            to="/blog/new"
-            className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-md inline-block"
-          >
-            New Post
-          </Link>
+        <div
+          className={`w-full max-w-3xl p-4 mt-24 ${
+            theme === "dark" ? "bg-gray-800" : "bg-white"
+          } shadow-lg rounded-lg`}
+        >
+          <h1 className="text-3xl font-bold mb-4 text-center">Nick's Blog</h1>
+          <div className="flex justify-center mb-4">
+            <Link
+              to="/blog/new"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md inline-block"
+            >
+              New Post
+            </Link>
+          </div>
           <ul className="space-y-4">
             {posts.map((post) => (
               <li
                 key={post.id}
-                className="border border-gray-300 p-4 rounded-md"
+                className={`border border-gray-300 p-4 rounded-md ${
+                  theme === "dark"
+                    ? "bg-gray-700 text-gray-300"
+                    : "bg-white text-gray-700"
+                } shadow-sm`}
               >
                 <Link to={`/blog/${post.id}`}>
-                  <h2 className="text-xl font-bold mb-2">{post.title}</h2>
+                  <h2 className="text-xl font-bold mb-2 text-center">
+                    {post.title}
+                  </h2>
                 </Link>
                 {post.imageUrl && (
-                  <img
-                    src={post.imageUrl}
-                    alt={post.title}
-                    className="mt-2 rounded-md"
-                  />
+                  <div className="w-full h-64 overflow-hidden rounded-md">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 )}
-                <p className="text-gray-700 mt-2">{post.content}</p>
+                <p className="text-gray-700 mt-2">{getPreview(post.content)}</p>
                 {post.timestamp && (
-                  <p className="text-gray-500 text-sm mt-2">
+                  <p className="text-gray-500 text-sm mt-2 text-center">
                     {format(new Date(post.timestamp.seconds * 1000), "PPpp")}
                   </p>
                 )}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
-import { db, storage, auth } from "./firebase"; // Import auth from firebase.js
+import { useNavigate } from "react-router-dom";
+import { db, storage, auth } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const BlogCreateEdit = ({ isNew, initialValues }) => {
-  const navigate = useNavigate(); // Initialize useNavigate hook for redirection
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState(isNew ? "" : initialValues.title);
   const [content, setContent] = useState(isNew ? "" : initialValues.content);
@@ -13,7 +13,6 @@ const BlogCreateEdit = ({ isNew, initialValues }) => {
 
   const handleImageUpload = async (file) => {
     if (!auth.currentUser) {
-      // User is not authenticated, handle this case as needed
       console.error("User is not authenticated.");
       return null;
     }
@@ -48,42 +47,45 @@ const BlogCreateEdit = ({ isNew, initialValues }) => {
     setContent("");
     setImage(null);
 
-    // Redirect to blog index page after creating or editing post
     navigate("/blog");
   };
 
   return (
-    <div className="w-full max-w-3xl p-4">
-      <h1 className="text-3xl font-bold mb-4">{isNew ? "Create" : "Edit"} Blog Post</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-        />
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Content"
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-          rows="5"
-        />
-        <input
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-          className="border border-gray-300 rounded-md p-2"
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-        >
-          {isNew ? "Create" : "Save"}
-        </button>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-3xl p-4 bg-white shadow-lg rounded-lg">
+        <h1 className="text-3xl font-bold mb-4 text-center">
+          {isNew ? "Create" : "Edit"} Blog Post
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Content"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            rows="5"
+          />
+          <input
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+            className="border border-gray-300 rounded-md p-2"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 mx-6 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+          >
+            {isNew ? "Create" : "Save"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
