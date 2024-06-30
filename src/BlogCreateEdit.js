@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db, storage, auth } from "./firebase";
 import {
@@ -11,22 +11,34 @@ import {
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-const BlogCreateEdit = () => {
+const BlogCreateEdit = ({ theme }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [initialValues, setInitialValues] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [imageName, setImageName] = useState("");
   const isNew = !id;
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
+    // Check authentication state
+    if (!auth.currentUser) {
+      navigate("/login"); // Redirect to login page if not authenticated
+    }
+
     const fetchPost = async () => {
       const docRef = doc(db, "posts", id);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        setInitialValues(docSnap.data());
+        const data = docSnap.data();
+        setInitialValues(data);
+        if (data.imageUrl) {
+          const urlParts = data.imageUrl.split("/");
+          setImageName(urlParts[urlParts.length - 1]);
+        }
       } else {
         console.log("No such document!");
       }
@@ -35,7 +47,7 @@ const BlogCreateEdit = () => {
     if (!isNew) {
       fetchPost();
     }
-  }, [id, isNew]);
+  }, [id, isNew, navigate]);
 
   useEffect(() => {
     if (!isNew && initialValues) {
@@ -82,13 +94,54 @@ const BlogCreateEdit = () => {
     return downloadURL;
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+      setImageName(e.target.files[0].name);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    setImage(droppedFile);
+    setImageName(droppedFile.name);
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-3xl p-4 bg-white shadow-lg rounded-lg">
-        <h1 className="text-3xl font-bold mb-4 text-center">
+    <div
+      className={`flex items-center justify-center min-h-screen ${
+        theme === "dark" ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <div
+        className={`w-full max-w-3xl p-4 ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        } shadow-lg rounded-lg`}
+      >
+        <h1
+          className={`text-3xl font-bold mb-4 text-center ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}
+        >
           {isNew ? "Create" : "Edit"} Blog Post
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className={`space-y-4 ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}
+          style={{
+            backgroundColor: theme === "dark" ? "black" : "white",
+            color: theme === "dark" ? "white" : "black",
+          }}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        >
           <input
             type="text"
             value={title}
@@ -96,6 +149,10 @@ const BlogCreateEdit = () => {
             placeholder="Title"
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            style={{
+              backgroundColor: theme === "dark" ? "black" : "white",
+              color: theme === "dark" ? "white" : "black",
+            }}
           />
           <textarea
             value={content}
@@ -103,20 +160,45 @@ const BlogCreateEdit = () => {
             placeholder="Content"
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            style={{
+              backgroundColor: theme === "dark" ? "black" : "white",
+              color: theme === "dark" ? "white" : "black",
+            }}
             rows="5"
           />
+          <div
+            className="w-full border border-dashed border-gray-300 rounded-md p-8 text-center cursor-pointer"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current.click()} // Trigger file input click
+            style={{
+              backgroundColor: theme === "dark" ? "black" : "white",
+              color: theme === "dark" ? "white" : "black",
+            }}
+          >
+            {image ? (
+              <p className="text-gray-600">{imageName}</p>
+            ) : (
+              <p>Drag & Drop an image file here, or click to select</p>
+            )}
+          </div>
           <input
             type="file"
-            onChange={(e) => setImage(e.target.files[0])}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="hidden"
+            ref={fileInputRef} // Add this ref to your file input
           />
-
-          <button
-            type="submit"
-            className="bg-blue-500 mx-6 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-          >
-            {isNew ? "Create" : "Save"}
-          </button>
+          <div className="text-center">
+            <button
+              type="submit"
+              className={`bg-blue-500 mx-6 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none ${
+                theme === "dark" ? "hover:text-black" : "hover:text-white"
+              }`}
+            >
+              {isNew ? "Create" : "Save"}
+            </button>
+          </div>
         </form>
       </div>
     </div>

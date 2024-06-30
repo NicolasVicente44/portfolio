@@ -88,7 +88,7 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
         </li>
         <li className="py-6 text-4xl">
           <li className="text-2xl">
-            <a href="/contact">Blog</a>
+            <a href="/blog">Blog</a>
           </li>
         </li>
         <button onClick={toggleTheme} className="py-6 text-4xl">

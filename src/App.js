@@ -5,11 +5,17 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import QrCode from "./components/QrCode";
 import Blog from "./Blog";
 import BlogCreateEdit from "./BlogCreateEdit"; // Import BlogCreateEdit component
 import BlogDetails from "./BlogDetails"; // Import BlogDetails component
+import Login from "./Login";
 
 function App() {
   // system theme preference at the start
@@ -49,6 +55,10 @@ function App() {
     setTheme(newTheme);
   };
 
+  const handleLoginSuccess = (user) => {
+    console.log("Logged in user:", user);
+  };
+
   return (
     <div className={theme === "dark" ? "dark" : ""}>
       <Navbar toggleTheme={toggleTheme} theme={theme} setNav={setNav} />
@@ -58,10 +68,21 @@ function App() {
         <Route path="/skills" element={<Skills nav={nav} theme={theme} />} />
         <Route path="/work" element={<Work nav={nav} theme={theme} />} />
         <Route path="/contact" element={<Contact theme={theme} />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/new" element={<BlogCreateEdit isNew />} />
-        <Route path="/blog/edit/:id" element={<BlogCreateEdit />} />
-        <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/blog" element={<Blog theme={theme} />} />
+        <Route
+          path="/blog/new"
+          element={<BlogCreateEdit theme={theme} isNew />}
+        />
+        <Route
+          path="/blog/edit/:id"
+          element={<BlogCreateEdit theme={theme} />}
+        />
+        <Route path="/blog/:id" element={<BlogDetails theme={theme} />} />
+        {/* Pass handleLoginSuccess as a prop to Login component */}
+        <Route
+          path="/login"
+          element={<Login theme={theme} onLoginSuccess={handleLoginSuccess} />}
+        />
 
         <Route path="/qrcode" element={<QrCode theme={theme} />} />
       </Routes>
