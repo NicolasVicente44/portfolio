@@ -10,6 +10,8 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 const BlogCreateEdit = ({ theme }) => {
   const { id } = useParams();
@@ -26,8 +28,7 @@ const BlogCreateEdit = ({ theme }) => {
     // Check authentication state
     if (!auth.currentUser) {
       navigate("/login"); // Redirect to login page if not authenticated
-    }
-
+    } 
     const fetchPost = async () => {
       const docRef = doc(db, "posts", id);
       const docSnap = await getDoc(docRef);
@@ -119,7 +120,7 @@ const BlogCreateEdit = ({ theme }) => {
       }`}
     >
       <div
-        className={`w-full max-w-3xl p-4 ${
+        className={`w-full mt-24 max-w-3xl p-4 ${
           theme === "dark" ? "bg-black" : "bg-white"
         } shadow-lg rounded-lg`}
       >
@@ -154,17 +155,12 @@ const BlogCreateEdit = ({ theme }) => {
               color: theme === "dark" ? "white" : "black",
             }}
           />
-          <textarea
+          <ReactQuill
+            theme="snow" // Set the theme here ('snow' or 'bubble')
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={setContent}
             placeholder="Content"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-            style={{
-              backgroundColor: theme === "dark" ? "black" : "white",
-              color: theme === "dark" ? "white" : "black",
-            }}
-            rows="5"
+            className="quill-editor" // Optional CSS class for Quill container
           />
           <div
             className="w-full border border-dashed border-gray-300 rounded-md p-8 text-center cursor-pointer"

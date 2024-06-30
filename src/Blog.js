@@ -96,12 +96,11 @@ const Blog = ({ theme }) => {
                     />
                   </div>
                 )}
-                <p
+                <div
                   className="text-gray-700 mt-2"
                   style={{ overflowWrap: "break-word" }}
-                >
-                  {getPreview(post.content)}
-                </p>
+                  dangerouslySetInnerHTML={{ __html: getPreview(post.content) }}
+                />
                 {post.timestamp && (
                   <p className="text-gray-500 text-sm mt-2 text-center">
                     {format(new Date(post.timestamp.seconds * 1000), "PPpp")}

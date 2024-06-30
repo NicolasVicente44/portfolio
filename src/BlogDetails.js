@@ -118,9 +118,8 @@ const BlogDetails = ({ theme }) => {
             className={`prose max-w-none ${
               theme === "dark" ? "text-white" : "text-gray-700"
             }`}
-          >
-            <p style={{ whiteSpace: "pre-wrap" }}>{post.content}</p>
-          </div>
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
           {isLoggedIn && (
             <div className="flex justify-end mt-4">
               <button

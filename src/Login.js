@@ -19,7 +19,6 @@ const Login = ({ onLoginSuccess, theme }) => {
       );
       setError(null);
       onLoginSuccess(userCredential.user);
-      navigate("/blog"); // Redirect to /blog after successful login
     } catch (error) {
       setError(error.message);
     }
