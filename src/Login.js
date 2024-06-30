@@ -19,6 +19,7 @@ const Login = ({ onLoginSuccess, theme }) => {
       );
       setError(null);
       onLoginSuccess(userCredential.user);
+      navigate("/blog");
     } catch (error) {
       setError(error.message);
     }
