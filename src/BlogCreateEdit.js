@@ -28,7 +28,7 @@ const BlogCreateEdit = ({ theme }) => {
     // Check authentication state
     if (!auth.currentUser) {
       navigate("/login"); // Redirect to login page if not authenticated
-    } 
+    }
     const fetchPost = async () => {
       const docRef = doc(db, "posts", id);
       const docSnap = await getDoc(docRef);
@@ -202,3 +202,4 @@ const BlogCreateEdit = ({ theme }) => {
 };
 
 export default BlogCreateEdit;
+  
