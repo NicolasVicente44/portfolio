@@ -35,7 +35,7 @@ const About = ({ theme }) => {
               opportunities to expand my skill set in emerging technologies and
               solutions. With a longing for knowledge and a dedication to
               personal and professional growth, I stay at the forefront of
-              industry trends. Click
+              industry trends. Click{" "}
               <a href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&st=509n6s4z&dl=0">
                 <u>
                   <b>here</b>
