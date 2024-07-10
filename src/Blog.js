@@ -39,12 +39,21 @@ const Blog = ({ theme }) => {
       navigate("/login"); // Navigate to login page if not logged in
     }
   };
-
   const getPreview = (content) => {
     if (!content) return "";
-    return content.length > 100 ? content.slice(0, 100) + "..." : content;
+  
+    // Split the content into words
+    const words = content.split(" ");
+  
+    // Select the first 50 words and join them back into a string
+    const previewText = words.slice(0, 25).join(" ") + (words.length > 25? "..." : "");
+  
+    // Wrap the previewText in a div with dangerouslySetInnerHTML to render HTML tags
+    return (
+      <div dangerouslySetInnerHTML={{ __html: previewText }} />
+    );
   };
-
+  
   return (
     <div
       className={`flex flex-col items-center justify-center min-h-screen ${
@@ -61,7 +70,7 @@ const Blog = ({ theme }) => {
         <div className="mb-4 text-center">
           <a
             href="/blog/new"
-            className={`group mx-auto my-auto text-center justify-center border-2 px-4 sm:px-6 py-2 sm:py-3 lg:w-1/2 sm:w-1/4 flex items-center cursor-pointer transition duration-300 ${
+            className={`group mx-auto my-auto text-center justify-center border-2 px- sm:px-6 py-2 sm:py-3 lg:w-1/4 md:w-1/3 sm:w-1/4 flex items-center cursor-pointer transition duration-300 ${
               theme === "dark"
                 ? "text-white hover:bg-white hover:text-black border-white"
                 : "text-black hover:bg-black hover:text-white border-black"
@@ -81,10 +90,7 @@ const Blog = ({ theme }) => {
                     : "bg-white text-black"
                 } shadow-sm mb-4`}
               >
-                <h2
-                  className="text-xl mb-2 font-bold text-center"
-                  style={{ wordWrap: "break-word" }}
-                >
+                <h2 className="text-xl mb-2 font-bold text-center" style={{ wordWrap: "break-word" }}>
                   {post.title}
                 </h2>
                 {post.imageUrl && (
@@ -96,12 +102,12 @@ const Blog = ({ theme }) => {
                     />
                   </div>
                 )}
-                <p
-                  className="text-gray-700 mt-2"
+                <div
+                  className="text-gray-700 mt-2 prose"
                   style={{ overflowWrap: "break-word" }}
                 >
                   {getPreview(post.content)}
-                </p>
+                </div>
                 {post.timestamp && (
                   <p className="text-gray-500 text-sm mt-2 text-center">
                     {format(new Date(post.timestamp.seconds * 1000), "PPpp")}
