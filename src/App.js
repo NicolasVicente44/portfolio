@@ -16,6 +16,7 @@ import Blog from "./Blog";
 import BlogCreateEdit from "./BlogCreateEdit"; // Import BlogCreateEdit component
 import BlogDetails from "./BlogDetails"; // Import BlogDetails component
 import Login from "./Login";
+import ResumePage from "./components/ResumePage";
 
 function App() {
   // system theme preference at the start
@@ -83,8 +84,9 @@ function App() {
           path="/login"
           element={<Login theme={theme} onLoginSuccess={handleLoginSuccess} />}
         />
-
         <Route path="/qrcode" element={<QrCode theme={theme} />} />
+        <Route path="/resume" element={<ResumePage theme={theme} />} />
+  
       </Routes>
     </div>
   );

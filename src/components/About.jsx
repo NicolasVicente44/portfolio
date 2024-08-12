@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const About = ({ theme }) => {
   return (
     <div
@@ -23,24 +25,24 @@ const About = ({ theme }) => {
         </div>
         <div className="max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4 mt-8">
           <div className="sm:text-right text-4xl font-bold col-span-1">
-            <p>Hi, I'm Nicolas</p>
+            <p>Hi, I'm Nick</p>
           </div>
-          <div className="col-span-1 ">
+          <div className="col-span-1">
             <p className="text-lg">
               I tackle challenges and adapt to rapid advancements. I embrace new
               tools, frameworks, and methodologies to deliver transformative
               solutions that drive operational efficiency and business success.
-              I'm looking to utilize my formal education, self study, and past
+              I'm looking to utilize my formal education, self-study, and past
               work experience to create valuable projects. I actively seek
               opportunities to expand my skill set in emerging technologies and
               solutions. With a longing for knowledge and a dedication to
               personal and professional growth, I stay at the forefront of
               industry trends. Click{" "}
-              <a href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&st=509n6s4z&dl=0">
+              <Link to="/resume">
                 <u>
                   <b>here</b>
                 </u>
-              </a>{" "}
+              </Link>{" "}
               to view my resume and learn more about me.
             </p>
           </div>

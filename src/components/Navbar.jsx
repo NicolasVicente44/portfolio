@@ -5,6 +5,7 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 // import { Link } from "react-scroll";
 import { FaRegLightbulb } from "react-icons/fa";
 import { IoMoonOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ toggleTheme, theme, setNav }) => {
   const [nav, setNavState] = useState(false);
@@ -123,13 +124,12 @@ const Navbar = ({ toggleTheme, theme, setNav }) => {
             </a>
           </li>
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69] ">
-            <a
+            <Link
               className="flex justify-between items-center w-full text-gray-300"
-              href="https://www.dropbox.com/scl/fi/ktfi60c748su3tqucei04/Nicolas_Vicente_Resume.pdf?rlkey=wf4sgqo6aueyfhjhi2drsmvwj&st=509n6s4z&dl=0"
-              download="Nicolas_Vicente_Resume.pdf"
+              to="/resume" 
             >
               Resume <BsFillPersonLinesFill size={30} />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
